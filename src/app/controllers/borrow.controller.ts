@@ -36,7 +36,7 @@ borrowRotes.post("/", async (req: Request, res: Response) => {
 
         res.status(201).json({
             "success": true,
-            "message": "Book created successfully",
+            "message": "Book borrowed successfully",
             "data": newBorrow
         })
     } catch (error) {
@@ -74,6 +74,7 @@ borrowRotes.get("/", async (req: Request, res: Response) => {
             },
             {
                 $project: {
+                    _id: 0,
                     book: {
                         title: "$bookInfo.title",
                         isbn: "$bookInfo.isbn"
@@ -85,7 +86,7 @@ borrowRotes.get("/", async (req: Request, res: Response) => {
 
         res.status(201).json({
             "success": true,
-            "message": "Book created successfully",
+            "message": "Borrowed books summary retrieved successfully",
             "data": books
         })
 

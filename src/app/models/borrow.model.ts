@@ -10,7 +10,8 @@ const borrowSchema = new Schema<IBorrow>({
 
     quantity: {
         type: Number,
-        required: true
+        required: [true,'Quantity Must Be Required'],
+        min : [1, 'Min 1 quantity must be borrow']
     },
     dueDate: {
         type: Date,

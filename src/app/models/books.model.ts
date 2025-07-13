@@ -5,35 +5,36 @@ const booksSchema = new Schema<IBooks, borrowStaticMethod>({
 
     title: {
         type: String,
-        required: true,
+        required: [true, "Title Is Required"],
         trim: true,
     },
     author: {
         type: String,
-        required: true,
+        required: [true, "Author Is Required"],
         trim: true,
     },
     genre: {
         type: String,
-        required: true,
-        trim: true,
-        uppercase: true
+        uppercase: true,
+        enum: ['FICTION', 'NON_FICTION', 'SCIENCE', 'HISTORY', 'BIOGRAPHY', 'FANTASY'],
+        required: [true, "Genre Is Required"],
+        trim: true
     },
     isbn: {
         type: Number,
-        required: true,
+        required: [true, "Isbn Is Required"],
+        unique: true
     },
     description: {
         type: String,
-        required: true,
     },
     copies: {
         type: Number,
-        required: true
+        required: [true, "Copies Is Required"],
     },
     available: {
         type: Boolean,
-        required: true
+        default: true
     }
 },
     {
@@ -41,6 +42,20 @@ const booksSchema = new Schema<IBooks, borrowStaticMethod>({
         timestamps: true
     }
 );
+
+booksSchema.post('save', function (doc) {
+    console.log("Book saved:", doc.title);
+});
+
+booksSchema.pre('save', function (next) {
+    console.log(this)
+    next();
+})
+
+booksSchema.pre("findOneAndUpdate", function (next) {
+    this.set({ updatedAt: new Date() });
+    next();
+})
 
 
 booksSchema.static("updateAvailability", async function (bookId, quantity) {

@@ -63,7 +63,7 @@ bookRoutes.get("/", async (req: Request, res: Response) => {
 
 // Get Book by ID
 
-bookRoutes.get("//:bookId", async (req: Request, res: Response) => {
+bookRoutes.get("/:bookId", async (req: Request, res: Response) => {
 
     try {
         const bookId = req.params.bookId;
@@ -89,7 +89,7 @@ bookRoutes.get("//:bookId", async (req: Request, res: Response) => {
 
 
 //update book
-bookRoutes.put("//:bookId", async (req: Request, res: Response) => {
+bookRoutes.put("/:bookId", async (req: Request, res: Response) => {
     try {
 
         const { bookId } = req.params;
@@ -119,7 +119,7 @@ bookRoutes.put("//:bookId", async (req: Request, res: Response) => {
 
 // Delete Book
 
-bookRoutes.delete("//:bookId", async (req: Request, res: Response) => {
+bookRoutes.delete("/:bookId", async (req: Request, res: Response) => {
     try {
 
         const bookId = req.params.bookId;
