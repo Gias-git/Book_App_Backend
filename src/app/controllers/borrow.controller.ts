@@ -10,7 +10,7 @@ export const borrowRotes = express.Router()
 borrowRotes.post("/", async (req: Request, res: Response) => {
     try {
 
-        const { book, quantity, dueDate } = req.body;
+        const { book, quantity} = req.body;
 
         const queryBook = await Books.findById(book);
 

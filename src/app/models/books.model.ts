@@ -23,7 +23,8 @@ const booksSchema = new Schema<IBooks, borrowStaticMethod>({
     isbn: {
         type: Number,
         required: [true, "Isbn Is Required"],
-        unique: true
+        unique: true,
+        index: true
     },
     description: {
         type: String,

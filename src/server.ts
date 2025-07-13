@@ -1,10 +1,8 @@
-import { Server } from "http";
 import app from "./app";
 import mongoose from "mongoose";
 import dotenv from 'dotenv';
 
 
-let server: Server;
 const PORT = 7000;
 
 dotenv.config();
@@ -22,7 +20,7 @@ async function main() {
         await mongoose.connect(MONGO_URI);
 
         console.log("Mongoose Connected")
-        server = app.listen(PORT, () => {
+        app.listen(PORT, () => {
             console.log(`APP is Listening in port ${PORT}`)
         })
     } catch (error) {

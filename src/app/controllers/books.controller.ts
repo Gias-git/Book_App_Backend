@@ -1,4 +1,4 @@
-import express, {  Request, Response } from 'express'
+import express, { Request, Response } from 'express'
 import { Books } from '../models/books.model';
 
 
@@ -36,7 +36,7 @@ bookRoutes.get("/", async (req: Request, res: Response) => {
 
         const { filter, sortBy, sort, limit } = req.query;
 
-        const query: any = {};
+        const query: Record<string, unknown> = {};
         if (filter) {
             query.genre = filter;
         }
@@ -124,7 +124,7 @@ bookRoutes.delete("/:bookId", async (req: Request, res: Response) => {
 
         const bookId = req.params.bookId;
 
-        const deletedBook = await Books.findByIdAndDelete(bookId);
+        await Books.findByIdAndDelete(bookId);
 
         const data = await Books.findById(bookId);
 
